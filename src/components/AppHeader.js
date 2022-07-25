@@ -1,7 +1,7 @@
 import React from 'react'
-import { Menu } from 'antd'
-import { Button } from 'antd'
-import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate'
+import { SigningCosmWasmClient } from '@cosmjs/stargate'
+import { Image, Menu, Button } from 'antd'
+import logo_learnr from '../assets/images/logo_learnr.png'
 
 export default function AppHeader() {
     const connectWallet = (e) => {
@@ -22,6 +22,7 @@ export default function AppHeader() {
                 <Menu>
                     <div style={{ display: "flex", opacity: "0.5", flexDirection: "row" }}>
                         <div style={{ flex: "1", justifyContent: "center", alignItems: "center", flexDirection: "row", display: "flex", }}>
+                            <Menu.Item><Image src={logo_learnr} /></Menu.Item>
                             <Menu.Item>Profile</Menu.Item>
                             <Menu.Item>Inventory</Menu.Item>
                         </div>
