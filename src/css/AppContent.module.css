@@ -1,0 +1,15 @@
+.inventory {
+  /* display: flex; */
+  border: 2px solid;
+  border-radius: 25px;
+  margin: 2% 10% 10% 10%;
+}
+.money {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  padding: 10px;
+  border-radius: 25px;
+  margin: 2% 30% 0 30%;
+}
