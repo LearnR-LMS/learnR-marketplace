@@ -1,9 +1,5 @@
 import AppHeader from "./AppHeader";
-import AppContent from "./AppContent";
+import Home from "./Home";
 import AppFooter from "./AppFooter";
 
-export {
-    AppHeader,
-    AppContent,
-    AppFooter
-}
+export { AppHeader, AppFooter, Home };
