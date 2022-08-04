@@ -11,6 +11,7 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
+    watchFiles: ['*.css']
   },
   plugins: [
     new webpack.ProvidePlugin({

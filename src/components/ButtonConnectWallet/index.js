@@ -1,18 +1,17 @@
 import { Button } from "antd";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateAuraStaked, updateWalletAddress } from "../../client/actions";
+import { useSelector } from "react-redux";
 import { formatBalance, formatWalletAddress } from "../../ultils/helpers";
-import { connectWallet } from "../../ultils/WalletHelpers";
 import auraicon from "../../../public/auraicon.png";
 import "./styles.css";
+import walletClient from '../../ultils/WalletHelpers'
 
 export default function ButtonConnectWallet() {
   const address = useSelector((state) => state.client.address_wallet);
   const auraStaked = useSelector((state) => state.client.aura_staked);
 
   const dispatchUpdateAddress = async () => {
-    await connectWallet();
+    await walletClient.connectWallet();
   };
   let getData
   useEffect(() => {

@@ -1,0 +1,1 @@
+export const PEN_CONTRACTS = 'aura1mmddk9hc06jm79hrpjv33pa2223mq2cja5234lz82kglugaryxrqa6w6dw'
