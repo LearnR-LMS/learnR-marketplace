@@ -5,6 +5,7 @@
     "dependencies": {
         "@auranw/aurajs": "^1.0.0-alpha1",
         "@babel/runtime": "^7.18.9",
+        "@coin98-com/connect-sdk": "^1.0.1",
         "@cosmjs/cosmwasm-stargate": "^0.28.11",
         "@reduxjs/toolkit": "^1.8.3",
         "@testing-library/jest-dom": "^5.14.1",
@@ -12,6 +13,7 @@
         "@testing-library/user-event": "^13.2.1",
         "add": "^2.0.6",
         "antd": "^4.21.7",
+        "axios": "^0.27.2",
         "bootstrap": "^5.2.0",
         "react": "^18.2.0",
         "react-bootstrap": "^2.4.0",

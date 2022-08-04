@@ -1,4 +1,4 @@
-import { UPDATE_AURA_STAKED, UPDATE_WALLET_ADDRESS } from "./constants";
+import { UPDATE_AURA_STAKED, UPDATE_CLIENT_SIGNER, UPDATE_WALLET_ADDRESS } from "./constants";
 
 const initialState = {
   address_wallet: "",
@@ -6,6 +6,7 @@ const initialState = {
     amount: "0",
     denom: "uaura",
   },
+  clientSigner: null
 };
 
 export default function clientReducer(state = initialState, action) {
@@ -21,6 +22,12 @@ export default function clientReducer(state = initialState, action) {
       return {
         ...state,
         aura_staked: action?.payload,
+      };
+    }
+    case UPDATE_CLIENT_SIGNER: {
+      return {
+        ...state,
+        clientSigner: action?.payload,
       };
     }
     default:

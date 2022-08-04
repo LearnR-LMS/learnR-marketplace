@@ -10,12 +10,9 @@ import "./styles.css";
 export default function ButtonConnectWallet() {
   const address = useSelector((state) => state.client.address_wallet);
   const auraStaked = useSelector((state) => state.client.aura_staked);
-  const dispatch = useDispatch();
 
   const dispatchUpdateAddress = async () => {
-    const connectResponse = await connectWallet();
-    dispatch(updateWalletAddress(connectResponse.address));
-    dispatch(updateAuraStaked(connectResponse.auraStaked));
+    await connectWallet();
   };
   let getData
   useEffect(() => {
