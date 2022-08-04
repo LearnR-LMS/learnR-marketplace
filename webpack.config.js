@@ -10,6 +10,7 @@ const config = {
     publicPath: "/",
   },
   devServer: {
+    allowedHosts: "all",
     historyApiFallback: true,
     watchFiles: ['*.css']
   },
