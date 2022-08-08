@@ -6,7 +6,7 @@ import auraicon from "../../../public/auraicon.png";
 import "./styles.css";
 import walletClient from '../../ultils/WalletHelpers'
 
-export default function ButtonConnectWallet() {
+export default function ButtonConnectWallet(props) {
   const address = useSelector((state) => state.client.address_wallet);
   const auraStaked = useSelector((state) => state.client.aura_staked);
 
@@ -18,7 +18,7 @@ export default function ButtonConnectWallet() {
     if (address !== "") {
       getData = setInterval(() => {
         dispatchUpdateAddress();
-      }, 5000);
+      }, 10000);
     }
   }, []);
 
@@ -27,7 +27,7 @@ export default function ButtonConnectWallet() {
       clearInterval(getData)
       getData = setInterval(() => {
         dispatchUpdateAddress();
-      }, 5000);
+      }, 10000);
     }
   }, [address]);
 
@@ -35,7 +35,7 @@ export default function ButtonConnectWallet() {
     address !== "" ? formatWalletAddress(address) : "Connect Wallet";
   return (
     <Button
-      onClick={dispatchUpdateAddress}
+      onClick={address === "" ? dispatchUpdateAddress : props.onRePress ? props.onRePress : () => {} }
       className="itemActionButton"
       type="round"
     >

@@ -1,11 +1,9 @@
 .itemActionButton {
     border-radius: 5px;
     border-color: #fff;
-    float: right;
     width: auto;
     height: 40px;
-    margin: 5px 40px 5px 5px;
-    background-color: transparent;
+    background-color: #1da1f2;
     color: #fff;
     padding: 0 20px;
 }

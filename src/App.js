@@ -2,20 +2,15 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AppFooter, Home } from "./components";
-import Nav from "./layouts/Nav/Nav";
-import { store } from "./redux/store";
-import walletClient from "./ultils/WalletHelpers";
 import './App.css'
+import ButtonConnectWallet from "./components/ButtonConnectWallet";
 function router() {
   return (
     <Router>
-      <Nav />
-      <div className="App content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/inventory" element={<div>Inventory</div>} />
+          <Route path="/iframe/connect-wallet" element={<ButtonConnectWallet onRePress={() => {window.open("http://localhost:8080/")}}/>} />
         </Routes>
-      </div>
     </Router>
   );
 }

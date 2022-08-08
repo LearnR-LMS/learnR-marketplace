@@ -12,12 +12,7 @@ export default function Nav() {
       <ul className="nav-links">
         <Link to="/"></Link>
       </ul>
-      <div
-        style={{
-          position: "absolute",
-          right: 5,
-        }}
-      >
+      <div>
         <ButtonConnectWallet />
       </div>
     </div>

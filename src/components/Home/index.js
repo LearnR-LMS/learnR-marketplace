@@ -1,10 +1,11 @@
-import { List, } from "antd";
+import { List } from "antd";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
 import pen_default from "../../assets/images/pendefault.png";
 import { Button } from "react-bootstrap";
-import clientWallet from '../../ultils/WalletHelpers'
+import clientWallet from "../../ultils/WalletHelpers";
+import Nav from "../../layouts/Nav/Nav";
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -15,12 +16,12 @@ const Home = () => {
 
   const _renderItem = (item) => {
     let extensionData = "";
-    let level = ''
+    let level = "";
     if (item.extension) {
       extensionData = JSON.parse(item.extension);
-      if(extensionData.hasOwnProperty('level')){
-        level = extensionData.level
-        delete extensionData.level
+      if (extensionData.hasOwnProperty("level")) {
+        level = extensionData.level;
+        delete extensionData.level;
       }
     }
 
@@ -39,9 +40,9 @@ const Home = () => {
               alignItems: "start",
               flex: 1,
               padding: "4px",
-              flexDirection: 'column',
-              display: 'flex',
-              justifyContent: 'space-between'
+              flexDirection: "column",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
             <span className="level_text">Level: {level}</span>
@@ -54,16 +55,21 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <h2>Inventory</h2>
-      <List
-        bordered
-        dataSource={listPen}
-        renderItem={_renderItem}
-        style={{width: '100%'}}
-      />
-      {/* <Button onClick={clientWallet.mintPen} className="button-mint">Mint Pen Free</Button> */}
-    </div>
+    <>
+      <Nav />
+      <div className="App content">
+        <div className="home">
+          <h2>Inventory</h2>
+          <List
+            bordered
+            dataSource={listPen}
+            renderItem={_renderItem}
+            style={{ width: "100%" }}
+          />
+          {/* <Button onClick={clientWallet.mintPen} className="button-mint">Mint Pen Free</Button> */}
+        </div>
+      </div>
+    </>
   );
 };
 
