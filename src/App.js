@@ -9,7 +9,7 @@ function router() {
     <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/iframe/connect-wallet" element={<ButtonConnectWallet onRePress={() => {window.open("http://localhost:8080/")}}/>} />
+          <Route path="/iframe/connect-wallet" element={<ButtonConnectWallet onRePress={() => {window.open(process.env.BASE_URL)}}/>} />
         </Routes>
     </Router>
   );

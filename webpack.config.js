@@ -1,6 +1,7 @@
 const path = require("path"); // lấy đường dẫn tuyệt đối của thư mục
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 const config = {
   entry: "./src/index.js",
@@ -17,12 +18,14 @@ const config = {
   plugins: [
     new webpack.ProvidePlugin({
       Buffer: ["buffer", "Buffer"],
+      process: 'process/browser',
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "./index.html",
       favicon: "./public/favicon.ico",
     }),
+    new Dotenv()
   ],
   module: {
     rules: [
@@ -60,7 +63,12 @@ const config = {
       path: require.resolve("path-browserify"),
       stream: require.resolve("stream-browserify"),
       string_decoder: false,
+      fs: false,
+      os: false
     },
+    alias: {
+      process: "process/browser"
+   }
   },
 };
 module.exports = config;

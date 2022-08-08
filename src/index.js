@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+require('dotenv').config()
 
 const root = ReactDOM.createRoot(window.document.getElementById("root"));
 
