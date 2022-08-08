@@ -1,8 +1,10 @@
-import { Avatar, Image, List, Typography } from "antd";
+import { List, } from "antd";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
 import pen_default from "../../assets/images/pendefault.png";
+import { Button } from "react-bootstrap";
+import clientWallet from '../../ultils/WalletHelpers'
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -58,7 +60,9 @@ const Home = () => {
         bordered
         dataSource={listPen}
         renderItem={_renderItem}
+        style={{width: '100%'}}
       />
+      <Button onClick={clientWallet.mintPen} className="button-mint">Mint Pen Free</Button>
     </div>
   );
 };

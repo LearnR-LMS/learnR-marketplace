@@ -1,4 +1,5 @@
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import axios from "axios";
 import {
   updateAuraStaked,
   updateListPenNFTs,
@@ -8,11 +9,17 @@ import { store } from "../redux/store";
 import { PEN_CONTRACTS } from "./const";
 
 class WalletClient {
-
-  constructor(){
+  constructor() {
     window.onload = () => {
-      this.connectWallet()
-    }
+      this.connectWallet();
+    };
+    this.account = {
+      address: "",
+      auraStaked: {
+        amount: "0",
+        denom: "",
+      },
+    };
   }
 
   client;
@@ -56,6 +63,7 @@ class WalletClient {
           address: accountRes.address,
           auraStaked,
         };
+        this.account = account;
       } else {
         store.dispatch(updateWalletAddress(""));
         store.dispatch(
@@ -64,6 +72,13 @@ class WalletClient {
             denom: "",
           })
         );
+        this.account = {
+          address: "",
+          auraStaked: {
+            amount: "0",
+            denom: "",
+          },
+        };
       }
     } catch (error) {
       console.error(error);
@@ -73,10 +88,10 @@ class WalletClient {
     store.dispatch(updateAuraStaked(account.auraStaked));
 
     // get NFTs info
-    if(account.address){
-      const pens = await this.getOwnTokens(account.address)
+    if (account.address) {
+      const pens = await this.getOwnTokens(account.address);
       store.dispatch(updateListPenNFTs(pens.tokens));
-    }else {
+    } else {
       store.dispatch(updateListPenNFTs([]));
     }
   };
@@ -84,12 +99,51 @@ class WalletClient {
   getOwnTokens = async (address) => {
     const msg = {
       tokens: {
-        owner: address
-      }
-    }
-    return await this.client.queryContractSmart(PEN_CONTRACTS, msg)
-  }
+        owner: address,
+      },
+    };
+    return await this.client.queryContractSmart(PEN_CONTRACTS, msg);
+  };
 
+  mintPen = async () => {
+    const responseCreatePen = await axios.post(
+      "http://45.119.87.21:3000/Token/create",
+      {
+        owner: this.account.address,
+      }
+    );
+    const mintMsg = {
+      mint: {
+        token_id: `${responseCreatePen.data.data.index}`,
+        owner: this.account.address,
+        extension: JSON.stringify({
+          quality: responseCreatePen.data.data.quality,
+          level: responseCreatePen.data.data.level,
+          effect: responseCreatePen.data.data.effect,
+          resilience: responseCreatePen.data.data.resilience,
+          number_of_mints: responseCreatePen.data.data.number_of_mints,
+          durability: responseCreatePen.data.data.durability,
+        }),
+      },
+    };
+    const fee = {
+      amount: [
+        {
+          denom: "uaura",
+          amount: "200",
+        },
+      ],
+      gas: "200000",
+    };
+    const resMint = await this.client.execute(
+      this.account.address,
+      PEN_CONTRACTS,
+      mintMsg,
+      fee
+    );
+    console.log(resMint)
+    return resMint
+  };
 }
 
-export default new WalletClient()
+export default new WalletClient();
