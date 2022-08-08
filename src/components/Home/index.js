@@ -62,7 +62,7 @@ const Home = () => {
         renderItem={_renderItem}
         style={{width: '100%'}}
       />
-      <Button onClick={clientWallet.mintPen} className="button-mint">Mint Pen Free</Button>
+      {/* <Button onClick={clientWallet.mintPen} className="button-mint">Mint Pen Free</Button> */}
     </div>
   );
 };
