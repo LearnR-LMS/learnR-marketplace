@@ -1,7 +1,7 @@
 export function formatWalletAddress(address) {
   return `${address.substring(0, 3)}....${address.substring(
     address.length - 4,
-    address.length - 1
+    address.length
   )}`;
 }
 

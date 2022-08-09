@@ -15,21 +15,21 @@ export default function ButtonConnectWallet(props) {
   };
   let getData
   useEffect(() => {
-    if (address !== "") {
-      getData = setInterval(() => {
-        dispatchUpdateAddress();
-      }, 10000);
-    }
+    // if (address !== "") {
+    //   getData = setInterval(() => {
+    //     dispatchUpdateAddress();
+    //   }, 10000);
+    // }
   }, []);
 
-  useEffect(() => {
-    if (address !== "") {
-      clearInterval(getData)
-      getData = setInterval(() => {
-        dispatchUpdateAddress();
-      }, 10000);
-    }
-  }, [address]);
+  // useEffect(() => {
+  //   if (address !== "") {
+  //     clearInterval(getData)
+  //     getData = setInterval(() => {
+  //       dispatchUpdateAddress();
+  //     }, 10000);
+  //   }
+  // }, [address]);
 
   const btnText =
     address !== "" ? formatWalletAddress(address) : "Connect Wallet";
