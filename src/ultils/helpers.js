@@ -14,7 +14,7 @@ export function formatBalance(balance) {
     amount.length
   );
   const integer = amount.substring(0, amount.length - decimalsCount);
-  return integer + '.' + decimal + " "  + getSubfix(balance.denom)
+  return Math.floor(Number(integer + '.' + decimal )* 1000)/1000 + " " + getSubfix(balance.denom) 
 }
 
 function getDecimals(denom) {
